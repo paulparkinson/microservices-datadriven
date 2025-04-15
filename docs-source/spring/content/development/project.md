@@ -1,6 +1,6 @@
 ---
 title: "Project Structure"
-description: "How to structure your Spring Boot application for deployment in Oracle Backend for Spring Boot and Microservices"
+description: "How to structure your Spring Boot application for deployment in Oracle Backend for Microservices and AI"
 keywords: "spring springboot microservices development oracle backend"
 ---
 
@@ -8,9 +8,9 @@ To take advantage of the built-in platform services, Oracle recommends using the
 
 Recommended versions:
 
-* Spring Boot 3.2.x
+* Spring Boot 3.3.x
 * Spring Cloud 2023.x.x
-* Java 17 or 21
+* Java 21 (or 17)
 
 Table of Contents:
 
@@ -29,9 +29,9 @@ Oracle recommends adding the following dependencies to your application so that 
 ```xml
 <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <java.version>17</java.version>
-    <spring.boot.dependencies.version>3.2.1</spring.boot.dependencies.version>
-    <spring-cloud.version>2023.0.0</spring-cloud.version>
+    <java.version>21</java.version>
+    <spring.boot.dependencies.version>3.3.1</spring.boot.dependencies.version>
+    <spring-cloud.version>2023.0.2</spring-cloud.version>
 </properties>
 
 <dependencies>
@@ -106,7 +106,7 @@ management:
       application: ${spring.application.name}
 ```
 
-The variables in this configuration are automatically injected to your deployment and pods when you use the Oracle Backend for Spring Boot and Microservices CLI to deploy your application.
+The variables in this configuration are automatically injected to your deployment and pods when you use the Oracle Backend for Microservices and AI CLI to deploy your application.
 
 ### Data Sources
 
@@ -159,7 +159,7 @@ spring:
       max-pool-size: 30
 ```
 
-The variables in this configuration are automatically injected to your deployment and pods when you use the Oracle Backend for Spring Boot and Microservices CLI to deploy your application.
+The variables in this configuration are automatically injected to your deployment and pods when you use the Oracle Backend for Microservices and AI CLI to deploy your application.
 
 ### Liquibase
 
@@ -167,7 +167,7 @@ If you are using Liquibase to manage your database schema and data, then you sho
 
 ```xml
 <properties>
-    <liquibase.version>4.25.1</liquibase.version>
+    <liquibase.version>4.28.0</liquibase.version>
 </properties>
 
 <dependencies>
@@ -191,7 +191,7 @@ spring:
     enabled: ${LIQUIBASE_ENABLED:true}
 ```
 
-The variables in this configuration are automatically injected to your deployment and pods when you use the Oracle Backend for Spring Boot and Microservices CLI to deploy your application. When you use the `deploy` command, you must specify the `liquibase-db` parameter and provide a user with sufficient privileges. Generally this will be permissions to create and alter users and to grant roles and privileges.  If your service uses Java Messaging Service (JMS), this use may also need execute permission on `dbms.aq_adm`, `dbms.aq_in` and `dbms.aq_jms`.
+The variables in this configuration are automatically injected to your deployment and pods when you use the Oracle Backend for Microservices and AI CLI to deploy your application. When you use the `deploy` command, you must specify the `liquibase-db` parameter and provide a user with sufficient privileges. Generally this will be permissions to create and alter users and to grant roles and privileges.  If your service uses Java Messaging Service (JMS), this use may also need execute permission on `dbms.aq_adm`, `dbms.aq_in` and `dbms.aq_jms`.
 
 ### Oracle Transaction Manager for Microservices
 
@@ -200,12 +200,12 @@ If you are using Oracle Transaction Manager for Microservices (MicroTx) to manag
 ```xml
 <dependency>
     <groupId>com.oracle.microtx.lra</groupId>
-    <artifactId>microtx-lra-spring-boot-starter-3x</artifactId>
-    <version>23.4.1</version>
+    <artifactId>microtx-lra-spring-boot-starter</artifactId>
+    <version>24.2.1</version>
 </dependency>
 ```
 
-Add the following configuration to your Spring application configuration. The variables in this configuration are automatically injected to your deployment and pods when you use the Oracle Backend for Spring Boot and Microservices CLI or the Visual Studio Code Extension to deploy your application. For example:
+Add the following configuration to your Spring application configuration. The variables in this configuration are automatically injected to your deployment and pods when you use the Oracle Backend for Microservices and AI CLI or the Visual Studio Code Extension to deploy your application. For example:
 
 ```yaml
 spring:
@@ -231,7 +231,7 @@ If you are using Spring Config Server to manage configurations, then add the fol
 </dependency>
 ```
 
-Add the following configuration to your Spring application configuration. The variables in this configuration are automatically injected to your deployment and pods when you use the Oracle Backend for Spring Boot and Microservices CLI or the Visual Studio Code Extension to deploy your application. For example:
+Add the following configuration to your Spring application configuration. The variables in this configuration are automatically injected to your deployment and pods when you use the Oracle Backend for Microservices and AI CLI or the Visual Studio Code Extension to deploy your application. For example:
 
 ```yaml
 spring:
@@ -269,7 +269,7 @@ To enable Open Telemetry (OTEL) tracing you need to add the following dependenci
 </dependency>
 ```
 
-In addition add the following to the application configuration. The variable in this configuration are automatically injected to your deployment and pods when you use the Oracle Backend for Spring Boot and Microservices CLI or the Visual Studio Code Extension to deploy your application. For example:
+In addition add the following to the application configuration. The variable in this configuration are automatically injected to your deployment and pods when you use the Oracle Backend for Microservices and AI CLI or the Visual Studio Code Extension to deploy your application. For example:
 
 ```yaml
 management:
@@ -296,6 +296,6 @@ To get tracing for the database calls you need to add the following dependency t
 <dependency>
     <groupId>net.ttddyy.observation</groupId>
     <artifactId>datasource-micrometer-spring-boot</artifactId>
-    <version>$1.0.2</version>
+    <version>1.0.3</version>
 </dependency>
 ```

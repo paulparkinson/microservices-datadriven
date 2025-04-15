@@ -1,6 +1,6 @@
 ---
 title: "Setup"
-description: "Setup Oracle Backend for Spring Boot and Microservices"
+description: "Setup Oracle Backend for Microservices and AI"
 keywords: "setup install springboot spring development microservices development oracle backend"
 resources:
   - name: oci-private-templates
@@ -54,9 +54,6 @@ resources:
   - name: oci-stack-byodb-options
     src: "oci-stack-byodb-options.png"
     title: "Bring your Own Database Options - Standard Edition"
-  - name: oci-stack-parse-options
-    src: "oci-stack-parse-options.png"
-    title: "Parse Server Options"
   - name: oci-stack-app-name
     src: "oci-stack-app-name.png"
     title: "Compartment, Application and Edition"
@@ -74,7 +71,7 @@ resources:
     title: "Load Balancer Options"
   - name: oci-stack-vault-options
     src: "oci-stack-vault-options.png"
-    title: "HashiCorp Vault Options - Standard Edition"
+    title: "Standard Edition"
   - name: azn-stack-app-info
     src: "azn-stack-app-info.png"
     title: "Access Information"
@@ -87,7 +84,7 @@ resources:
 
 ---
 
-Oracle Backend for Spring Boot and Microservices is available in the [OCI Marketplace](https://cloudmarketplace.oracle.com/marketplace/en_US/listing/138899911).
+Oracle Backend for Microservices and AI is available in the [OCI Marketplace](https://cloudmarketplace.oracle.com/marketplace/en_US/listing/138899911).
 
 - [Prerequisites](#prerequisites)
 - [Summary of Components](#summary-of-components)
@@ -98,7 +95,7 @@ Oracle Backend for Spring Boot and Microservices is available in the [OCI Market
 
 ## Prerequisites
 
-You must meet the following prerequisites to use Oracle Backend for Spring Boot and Microservices. You need:
+You must meet the following prerequisites to use Oracle Backend for Microservices and AI. You need:
 
 - An Oracle Cloud Infrastructure (OCI) account in a tenancy with sufficient quota to create the following:
 
@@ -113,42 +110,127 @@ You must meet the following prerequisites to use Oracle Backend for Spring Boot 
 
   - The Kubernetes command-line interface (kubectl). [Installing kubectl documentation](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
   - Oracle Cloud Infrastructure command-line interface (CLI). [Quickstart - Installing the CLI](https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/cliinstall.htm#Quickstart).
-  - Oracle Backend for Spring Boot and Microservices command-line interface (oractl). [Download oractl](https://github.com/oracle/microservices-datadriven/releases).
-  - [OPTIONAL]Oracle Backend for Spring Boot and Microservices VS Code Extension. [Download VS Code Extension](https://github.com/oracle/microservices-datadriven/releases).
+  - Oracle Backend for Microservices and AI command-line interface (oractl). [Download oractl](https://github.com/oracle/microservices-datadriven/releases/tag/OBAAS-1.4.0).
+  - [OPTIONAL]Oracle Backend for Microservices and AI VS Code Extension. [Download VS Code Extension](https://github.com/oracle/microservices-datadriven/releases/tag/OBAAS-1.4.0).
+  - [OPTIONAL]Oracle Backend for Microservices and AI IntelliJ plugin. [Download VS Code Extension](https://github.com/oracle/microservices-datadriven/releases/tag/OBAAS-1.4.0).
+
+## OCI policies
+
+The following policies needs to be in place to be able to install Oracle Backend for Microservices and AI. Top level and their dependencies listed.
+
+### Oracle Container Engine for Kubernetes
+
+```text
+Allow group `<group-name>` to manage cluster-family in `<location>`
+├── Allow group `<group-name>` to inspect compartments in `<location>`
+├── Allow group `<group-name>` to read virtual-network-family in `<location>`
+├── Allow group `<group-name>` to use network-security-groups in `<location>`
+├── Allow group `<group-name>` to use private-ips in `<location>`
+├── Allow group `<group-name>` to use subnets in `<location>`
+├── Allow group `<group-name>` to use vnics in `<location>`
+├── Allow group `<group-name>` to manage cluster-node-pools in `<location>`
+├── Allow group `<group-name>` to manage instance-family in `<location>`
+└── Allow group `<group-name>` to manage public-ips in `<location>`
+```
+
+### VCN
+
+```text
+Allow group `<group-name>` to manage vcns in `<location>`
+├── Allow group `<group-name>` to manage route-tables in `<location>`
+├── Allow group `<group-name>` to manage-security-lists in `<location>`
+├── Allow group `<group-name>` to manage-dhcp-options in `<location>`
+
+
+Allow group `<group-name>` to manage vcns in `<location>`
+Allow group `<group-name>` to manage route-tables in `<location>`
+Allow group `<group-name>` to manage security-lists in `<location>`
+Allow group `<group-name>` to manage dhcp-options in `<location>`
+Allow group `<group-name>` to manage nat-gateways in `<location>`
+Allow group `<group-name>` to manage service-gateways in `<location>`
+Allow group `<group-name>` to manage network-security-groups in `<location>`
+Allow group `<group-name>` to manage subnets in `<location>`
+```
+
+### Container Registry
+
+```text
+Allow group `<group-name>` to manage repos in `<location>`
+```
+
+### Object Storage
+
+```text
+Allow group `<group-name>` to read objectstorage-namespaces in `<location>`
+Allow group `<group-name>` to manage objects in `<location>`
+└── Allow group `<group-name>` to manage buckets in `<location>`
+```
+
+### Autonomous Database
+
+```text
+Allow group `<group-name>` to manage autonomous-database-family in `<location>`
+```
+
+### Vault
+
+If you deploy Oracle Backend for Microservices and AI **STANDARD** edition you need the following policies.
+
+```text
+Allow group `<group-name>` to manage vaults in `<location>`
+Allow group `<group-name>` to manage keys in `<location>`
+```
+
+#### Additional Vault
+
+To allow Container Engine for Kubernetes to access Vault via Groups:
+
+```text
+Allow group `<group-name>` to manage policies in `<location>`
+Allow group `<group-name>` to manage tag-namespaces in `<location>`
+Allow group `<group-name>` to manage dynamic-groups in `<location>`
+Allow group `<group-name>` to manage secret-family in `<location>`
+```
+
+### Oracle Resource Manager
+
+```text
+Allow group `<group-name>` to read orm-template in `<location>`
+Allow group `<group-name>` to use orm-stacks in `<location>`
+└── Allow group `<group-name>` to manage orm-jobs in `<location>`
+Allow group `<group-name>` to manage orm-private-endpoints in `<location>`
+```
 
 ## Summary of Components
 
-Oracle Backend for Spring Boot and Microservices setup installs the following components:
+Oracle Backend for Microservices and AI setup installs the following components.
 
 | Component                    | Version       | Description                                                                                 |
 |------------------------------|---------------|---------------------------------------------------------------------------------------------|
-| Apache APISIX                | 3.8.0         | Provides full lifecycle API management.                                                     |
-| Apache Kafka                 | 3.6.1 | Provides distributed event streaming.                                                       |
+| Alertmanager | v0.067.1 | Alertmanager |
+| Apache APISIX                | 3.9.1         | Provides full lifecycle API management.                                                     |
+| Apache Kafka                 | 3.8.0 | Provides distributed event streaming.                                                       |
 | cert-manager                 | 1.12.3        | Automates the management of certificates.                                                   |
-| Coherence Operator           | 3.3.2        | Provides in-memory data grid.                                                               |
+| Coherence Operator           | 3.3.5        | Provides in-memory data grid.                                                               |
 | Conductor Server             | 3.13.8        | Provides a Microservice orchestration platform.                                             |
-| Grafana                      | 9.2.5         | Provides the tool to examine, analyze, and monitor metrics.                                 |
-| HashiCorp Vault              | 1.15.2        | Provides a way to store and tightly control access to sensitive data.                       |
-| Jaeger Tracing               | 1.45.0        | Provides distributed tracing system for monitoring and troubleshooting distributed systems. |
+| Grafana                      | 11.1.4         | Provides the tool to examine, analyze, and monitor metrics.                                 |
+| Jaeger Tracing               | 1.53.0        | Provides distributed tracing system for monitoring and troubleshooting distributed systems. |
 | Kube State Metrics | 2.10.1 | Collects metrics for the Kubernetes cluster     |
 | Loki                         | 2.6.1     | Provides log aggregation and search. |
-| Metrics server | 0.64  | Source of container resource metrics for Kubernetes built-in autoscaling pipeline |
-| NGINX Ingress Controller     | 1.8.1         | Provides traffic management solution for cloud‑native applications in Kubernetes.           |
-| OpenTelemetry Collector      | 0.93.0        | Collects process and export telemetry data.                                                 |
-| Oracle Database Observability Exporter | 1.2.0 | Exposes Oracle Database metrics in standard Prometheus format.                            |
-| Oracle Database Operator     | 1.0           | Helps reduce the time and complexity of deploying and managing Oracle databases.            |
-| Oracle Database storage adapter for Parse  (optional) | 1.0.0    | Enables the Parse Server to store data in Oracle Database.              |
-| Oracle Transaction Manager for Microservices | 23.4.1 | Manages distributed transactions to ensure consistency across Microservices.       |
-| Parse Server (optional)      | 6.3.0         | Provides backend services for mobile and web applications.                                  |
-| Parse Dashboard (optional)   | 5.2.0         | Provides web user interface for managing the Parse Server.                                  |
-| Prometheus                   | 2.40.2        | Provides event monitoring and alerts.                                                       |
-| Prometheus Operator          | 0.63.0        | Provides management for Prometheus monitoring tools.                                        |
+| Metrics server | 0.7.0  | Source of container resource metrics for Kubernetes built-in autoscaling pipeline |
+| NGINX Ingress Controller     | 1.10.1         | Provides traffic management solution for cloud‑native applications in Kubernetes.           |
+| OpenTelemetry Collector      | 0.107.0        | Collects process and export telemetry data.                                                 |
+| Oracle Database Observability Exporter | 1.3.1 | Exposes Oracle Database metrics in standard Prometheus format.                            |
+| Oracle Database Operator     | 1.1.0          | Helps reduce the time and complexity of deploying and managing Oracle databases.            |
+| Oracle Transaction Manager for Microservices | 24.2.1 | Manages distributed transactions to ensure consistency across Microservices.       |
+| Prometheus                   | 2.52.0        | Provides event monitoring and alerts.                                                       |
+| Prometheus Operator          | 0.74.0        | Provides management for Prometheus monitoring tools.                                        |
 | Promtail                     | 2.8.2     | Collects logs.                       |
-| Spring Authorization Server  | 3.2.1  | Provides authentication and authorization for applications. |
-| Spring Boot Admin server     | 3.2.0         | Manages and monitors Spring Cloud applications.                                             |
-| Spring Cloud Config server   | 2023.0.0      | Provides server-side support for an externalized configuration.                             |
-| Spring Eureka service registry | 2023.0.0 | Provides service discovery capabilities.                                          |
-| Strimzi-Apache Kafka operator  | 0.36.1      | Manages Apache Kafka clusters.                                                              |
+| Spring Authorization Server  | 3.3.3  | Provides authentication and authorization for applications. |
+| Spring Boot Admin server     | 3.3.3         | Manages and monitors Spring Cloud applications.                                             |
+| Spring Cloud Config server   | 4.1.3      | Provides server-side support for an externalized configuration.                             |
+| Spring Eureka service registry | 4.1.3 | Provides service discovery capabilities.                                          |
+| Strimzi-Apache Kafka operator  | 0.43.0      | Manages Apache Kafka clusters.                                                              |
 
 ## Overview of the Setup Process
 
@@ -156,7 +238,7 @@ This video provides a quick overview of the setup process.
 
 {{< youtube rAi10TiUraE >}}
 
-Installing Oracle Backend for Spring Boot and Microservice takes approximately one hour to complete. The following steps are involved:
+Installing Oracle Backend for Microservices and AI and Microservice takes approximately one hour to complete. The following steps are involved:
 
 - [Setup the OCI environment](#set-up-the-oci-environment)
 - [Setup of the Local Environment](#set-up-the-local-machine)
@@ -166,7 +248,7 @@ Installing Oracle Backend for Spring Boot and Microservice takes approximately o
 
 To set up the OCI environment, process these steps:
 
-1. Go to the [OCI Marketplace listing for Oracle Backend for Spring Boot and Microservices](https://cloud.oracle.com/marketplace/application/138899911).
+1. Go to the [OCI Marketplace listing for Oracle Backend for Microservices and AI](https://cloud.oracle.com/marketplace/application/138899911).
 
     <!-- spellchecker-disable -->
     {{< img name="ebaas-mp-listing" size="large" lazy=false >}}
@@ -180,7 +262,7 @@ To set up the OCI environment, process these steps:
 
 1. In the **Backend as A Service** Section, fill in the following configuration variables as needed and select **Next**:
 
-    - `Compartment` : Select the compartment where you want to install Oracle Backend for Spring Boot and Microservices.
+    - `Compartment` : Select the compartment where you want to install Oracle Backend for Microservices and AI.
     - `Application Name` (optional) : A random pet name that will be used as the application name if left empty.
     - `Edition` : Select between *COMMUNITY* and *STANDARD* Edition.
         - *COMMUNITY* - for developers for quick start to testing Spring Boot Microservices with an integrated backend. Teams can start with the deployment and scale up as processing demand grows. Community support only.
@@ -189,26 +271,14 @@ To set up the OCI environment, process these steps:
 
       **WARNING:** Deletion or expiration of the token will result in the failure to pull images later.  Also you must have one free OCI auth token (note that the maximum is two per user). You can *NOT* use someone elses token.
 
-    | Edition   | Parse Platform | BYO Network  | BYO Database     | Production Vault | Registry Scanning |
-    |-----------|----------------|--------------|------------------|------------------| ------------------|
-    | Community | x              |              |                  |                  |                   |
-    | Standard  | x              | x            | x                | x                | x                 |
+    | Edition   | BYO Network  | BYO Database     | Production Vault | Registry Scanning |
+    |-----------|--------------|------------------|------------------| ------------------|
+    | Community |              |                  |                  |                   |
+    | Standard  | x            | x                | x                | x                 |
 
     <!-- spellchecker-disable -->
     {{< img name="oci-stack-app-name" size="large" lazy=false >}}
     <!-- spellchecker-enable -->
-
-1. If you check the checkbox *Enable Parse Platform* in the **Parse Server** section a Parse Server will be installed. Fill in the following for the Parse Server:
-
-   - `Application ID` (optional) : Leave blank to auto-generate.
-   - `Server Master Key` (optional) : Leave blank to auto-generate.
-   - `Dashboard Username` : The user name of the user to whom access to the dashboard is granted.
-   - `Dashboard Password` (optional) : The password of the dashboard user (a minimum of 12 characters). Leave blank to auto-generate.
-   - `Enable Parse S3 Storage` : Check the checkbox to enable Parse Server S3 Adaptor and create a S3 compatible Object Storage Bucket.
-
-     <!-- spellchecker-disable -->
-     {{< img name="oci-stack-parse-options" size="large" lazy=false >}}
-     <!-- spellchecker-enable -->
 
 1. If you check the checkbox *Set Administrator Passwords* in the **Administrator Passwords** section you have the option to fill in the following passwords (if not they are autogenerated):
 
@@ -216,6 +286,7 @@ To set up the OCI environment, process these steps:
    - `Grafana Administrator Password` (optional) : Leave blank to auto-generate.
    - `ORACTL Administrator Password` optional) : Leave blank to auto-generate. This is the password for the `obaas-admin` user.
    - `ORACTL User Password` (optional) : Leave blank to auto-generate. This is the password for the `obaas-user` user.
+   - `Alertmanager Administrator Password` (optional) : Leave blank to auto-generate. This is the admin password for the alertmanager.
 
       <!-- spellchecker-disable -->
       {{< img name="oci-stack-passwords" size="large" lazy=false >}}
@@ -227,7 +298,7 @@ To set up the OCI environment, process these steps:
       {{< img name="oci-stack-network-options" size="large" lazy=false >}}
       <!-- spellchecker-enable -->
 
-    > For more information on the network requirements and topology of the Oracle Backend for Spring Boot and Microservices including the options for *Bring Your Own Virtual Cloud Network*, please see the [Networking](../infrastructure/networking) documentation.
+    > For more information on the network requirements and topology of the Oracle Backend for Microservices and AI including the options for *Bring Your Own Virtual Cloud Network*, please see the [Networking](../infrastructure/networking) documentation.
 
 1. In the **Kubernetes Cluster Options** section, fill in the following for the OKE Cluster Options:
 
@@ -236,6 +307,8 @@ To set up the OCI environment, process these steps:
    - `Node Pool Workers` : The number of Kubernetes worker nodes (virtual machines) attached to the OKE cluster.
    - `Node Pool Worker Shape` : The shape of the node pool workers.
    - `Node Workers OCPU` : The initial number of Oracle Compute Units (OCPUs) for the node pool workers.
+
+   If you check the box `Deploy GPU Node Pool` a node pool with GPU will be created with the size of `GPU Node Pool Workers` (default 1) and the shape `Node Pool Worker Shape` (default VM.GPU.A10.1). **NOTE:** Make sure that the tenancy you are deploying to has resources to do so.
 
    > **NOTE:** Oracle recommends that you set `API Endpoint Access Control` to be as restrictive as possible
 
@@ -284,7 +357,7 @@ To set up the OCI environment, process these steps:
       {{< img name="oci-stack-byodb-options" size="large" lazy=false >}}
       <!-- spellchecker-enable -->
 
-    > For more information on the *Bring Your Own Database* option for the Oracle Backend for Spring Boot and Microservices including the required values, please review the [Database](../infrastructure/database) documentation.
+    > For more information on the *Bring Your Own Database* option for the Oracle Backend for Microservices and AI including the required values, please review the [Database](../infrastructure/database) documentation.
 
 1. (*Standard Edition Only*) If you check the checkbox *Enable Vault in Production Mode* in the section **Vault Options** you will be installing HashiCorp in **Production** mode otherwise the HashiCorp Vault be installed in **Development** mode.
 
@@ -385,9 +458,9 @@ To set up the local machine, process these steps:
 
    b. Configure the Oracle Cloud Infrastructure CLI. See [Configuring the CLI](https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/cliconfigure.htm#Configuring_the_CLI).
 
-1. Install the Oracle Backend for Spring Boot and Microservices command-line.
+1. Install the Oracle Backend for Microservices and AI command-line.
 
-   The Oracle Backend for Spring Boot and Microservices command-line interface, `oractl`, is available for Linux and Mac systems. Download the binary that you want from the [Releases](https://github.com/oracle/microservices-datadriven/releases/tag/OBAAS-1.1.3) page and add it to your PATH environment variable. You can rename the binary to remove the suffix.
+   The Oracle Backend for Microservices and AI command-line interface, `oractl`, is available for Linux and Mac systems. Download the binary that you want from the [Releases](https://github.com/oracle/microservices-datadriven/releases/tag/OBAAS-1.3.1) page and add it to your PATH environment variable. You can rename the binary to remove the suffix.
 
    If your environment is a Linux or Mac machine, run `chmod +x` on the downloaded binary. Also, if your environment is a Mac, run the following command. Otherwise, you get a security warning and the CLI does not work:
 
@@ -398,7 +471,7 @@ To set up the local machine, process these steps:
 You can get the necessary access information from the OCI COnsole:
 
 - OKE Cluster Access information e.g. how to generate the kubeconfig information.
-- Oracle Backend for Spring Boot and Microservices Passwords.
+- Oracle Backend for Microservices and AI Passwords.
 
 The assigned passwords (either auto generated or provided by the installer) can be viewed in the OCI Console (ORM homepage). Click on Application Information in the OCI ORM Stack.
 

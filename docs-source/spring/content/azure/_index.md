@@ -4,12 +4,12 @@ description: "Multi-cloud Spring Boot Backend on Azure makes it easy for develop
 keywords: "spring springboot microservices multicloud azure oracle"
 ---
 
-The Oracle Backend for Spring Boot and Microservices is available to install in Multicloud (Microsoft Azure (Azure) and Oracle Cloud Infrastructure (OCI)). This installation
-deploys the Oracle Backend for Spring Boot and Microservices in Azure with an Oracle Autonomous Database running in OCI.
+The Oracle Backend for Microservices and AI is available to install in Multicloud (Microsoft Azure (Azure) and Oracle Cloud Infrastructure (OCI)). This installation
+deploys the Oracle Backend for Microservices and AI in Azure with an Oracle Autonomous Database running in OCI.
 
 ## Prerequisites
 
-You must meet the following prerequisites to use the Oracle Backend for Spring Boot Multicloud (Azure and OCI). You need:
+You must meet the following prerequisites to use the Oracle Backend for Microservices and AI Multicloud (Azure and OCI). You need:
 
 * An account on Azure.
 * An account on OCI.
@@ -22,11 +22,11 @@ Watch this video for a quick overview of the setup process.
 
 ## Download
 
-Download [Oracle Backend for Spring Boot and Microservices](https://github.com/oracle/microservices-datadriven/releases/download/OBAAS-1.1.3/azure-ebaas_latest.zip).
+Download [Oracle Backend for Microservices and AI](https://github.com/oracle/microservices-datadriven/releases/download/OBAAS-1.3.1/azure-ebaas_latest.zip).
 
 ## Setup
 
-A few setup steps are required in both OCI and Azure to deploy the Oracle Backend for Spring Boot and Microservices application.
+A few setup steps are required in both OCI and Azure to deploy the Oracle Backend for Microservices and AI application.
 
 ### OCI
 
@@ -55,7 +55,7 @@ The Multicloud installation is done using the Azure Cloud Shell. The following s
 
    ![Azure Cloud Shell Icon](AzureCloudShellIcon.png)
 
-3. Upload the [Oracle Backend for Spring Boot and Microservices](https://github.com/oracle/microservices-datadriven/releases/download/OBAAS-1.1.3/azure-ebaas-platform_latest.zip) stack. For example:
+3. Upload the [Oracle Backend for Microservices and AI](https://github.com/oracle/microservices-datadriven/releases/download/OBAAS-1.3.1/azure-ebaas-platform_latest.zip) stack. For example:
 
    ![Azure Upload](AzureUpload.png)
 

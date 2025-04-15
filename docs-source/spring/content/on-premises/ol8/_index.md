@@ -1,6 +1,6 @@
 ---
 title: "Developer Installation - Oracle Linux 8 (x86)"
-description: "Custom installation on Oracle Linux for Oracle Backend for Spring Boot and Microservices"
+description: "Custom installation on Oracle Linux for Oracle Backend for Microservices and AI"
 keywords: "installation ol oraclelinux nonproduction development onprem custom spring springboot microservices development oracle backend"
 ---
 
@@ -20,9 +20,9 @@ As `root`, process the following:
 useradd obaas
 ```
 
-### Download Oracle Backend for Spring Boot and Microservices
+### Download Oracle Backend for Microservices and AI
 
-Download the latest version of [Oracle Backend for Spring Boot](https://github.com/oracle/microservices-datadriven/releases/download/OBAAS-1.1.3/onprem-ebaas_latest.zip) and unzip into a new directory.
+Download the latest version of [Oracle Backend for Microservices and AI](https://github.com/oracle/microservices-datadriven/releases/download/OBAAS-1.3.1/onprem-ebaas_latest.zip) and unzip into a new directory.
 
 As the `obaas` user, run this command:
 

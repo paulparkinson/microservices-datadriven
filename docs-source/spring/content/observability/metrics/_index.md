@@ -1,6 +1,6 @@
 ---
 title: "Metrics"
-description: "Prometheus metrics and Grafana dashboards for Spring Boot applications with the Oracle Backend for Spring Boot and Microservices"
+description: "Prometheus metrics and Grafana dashboards for Spring Boot applications with the Oracle Backend for Microservices and AI"
 keywords: "observability metrics prometheus grafana spring springboot microservices development oracle backend"
 resources:
   - name: metrics
@@ -45,12 +45,9 @@ resources:
   - name: apache-apisix-dashboard
     src: "apache-apisix-dashboard.png"
     title: "Apache APISIX Observability Dashboard"
-  - name: vault-dashboard
-    src: "vault-grafana.png"
-    title: "Apache APISIX Observability Dashboard"
 ---
 
-Oracle Backend for Spring Boot and Microservices provides built-in platform services to collect metrics from system and application workloads and pre-built Grafana dashboards to view and explore those metrics.
+Oracle Backend for Microservices and AI provides built-in platform services to collect metrics from system and application workloads and pre-built Grafana dashboards to view and explore those metrics.
 
 On this page, you will find the following topics:
 
@@ -61,14 +58,13 @@ On this page, you will find the following topics:
   - [Oracle Database Dashboard](#oracle-database-dashboard)
   - [Kube State Metrics Dashboard](#kube-state-metrics-dashboard)
   - [Apache APISIX DashBoard](#apache-apisix-dashboard)
-  - [HashiCorp Vault Dashboard](#hashicorp-vault-dashboard)
 - [How to have metrics collected for your applications](#how-to-have-metrics-collected-for-your-applications)
 - [How to access Prometheus](#how-to-access-prometheus)
 - [How to access Grafana](#how-to-access-grafana)
 
 ## Overview
 
-Oracle Backend for Spring Boot and Microservices includes a number of pre-installed and pre-configured components to provide metrics for the platform itself and for your applications.
+Oracle Backend for Microservices and AI includes a number of pre-installed and pre-configured components to provide metrics for the platform itself and for your applications.
 
 The diagram below provides an overview of the components that play a role in metrics:
 
@@ -175,23 +171,9 @@ Here is an example of this dashboard:
 {{< img name="apache-apisix-dashboard" size="medium" lazy=false >}}
 <!-- spellchecker-enable -->
 
-### HashiCorp Vault Dashboard
-
-This dashboard provides details of the HashiCorp Vault including:
-
-- Health and seal status
-- Number of secrets
-- Number of operations
-
-Here is an example of this dashboard:
-
-<!-- spellchecker-disable -->
-{{< img name="vault-dashboard" size="medium" lazy=false >}}
-<!-- spellchecker-enable -->
-
 ## How to have metrics collected for your applications
 
-When you deploy an application with Oracle Backend for Spring Boot and Microservices CLI or Visual Code Extension, provided you included the Eureka Discovery Client and Actuator in your application, Prometheus will automatically find your application (using the service registry) and start collecting metrics. These metrics will be included in both the Spring Boot Observability dashboard and the Spring Boot Statistic dashboard automatically.
+When you deploy an application with Oracle Backend for Microservices and AI CLI or Visual Code Extension, provided you included the Eureka Discovery Client and Actuator in your application, Prometheus will automatically find your application (using the service registry) and start collecting metrics. These metrics will be included in both the Spring Boot Observability dashboard and the Spring Boot Statistic dashboard automatically.
 
 To include the Eureka Discovery client in your application, add the following dependencies to your Maven POM or equivalent:
 

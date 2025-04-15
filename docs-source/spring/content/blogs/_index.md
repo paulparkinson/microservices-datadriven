@@ -1,6 +1,6 @@
 ---
 title: "Read our blogs!"
-description: "Read blog posts from the team that builds the Oracle Backend for Spring Boot and Microservices"
+description: "Read blog posts from the team that builds the Oracle Backend for Microservices and AI"
 keywords: "blogs team spring springboot microservices mobile oracle"
 ---
 
@@ -9,6 +9,70 @@ We'd love you to check them out.
 This page acts as an index/aggregator for some of our featured content.
 
 ![YouTube icon](./youtube.png)  &nbsp; And be sure to subscribe to our YouTube channel ["The Converged Database"](https://www.youtube.com/@theconvergeddatabase6236) for more great content!
+
+{{< blog  
+    author="anders"
+    date="8/30/2024"
+    title="Connect to Oracle NoSQL database with Spring Data"
+    link="https://medium.com/@anders.swanson.93/oracle-nosql-database-with-spring-data-1edd2c23749a"
+    abstract="The Spring Data for Oracle NoSQL Database module integrates Spring Boot applications and Oracle NoSQL Database, enabling developers to access their tables with the familiar Spring Data API. With support for repository-style data access layers and automatic query generation, Spring Data for Oracle NoSQL Database simplifies your development process and enhances productivity when working with Oracle NoSQL Databases from Spring Boot applications."
+>}}
+
+{{< blog  
+    author="anders"
+    date="8/29/2024"
+    title="Microservice messaging with Spring Cloud Stream Binder for Oracle Database TxEventQ"
+    link="https://medium.com/@anders.swanson.93/spring-cloud-stream-binder-for-oracle-database-txeventq-baa405ba4505"
+    abstract="Spring Cloud Stream is a Java framework designed for building event-driven microservices backed by a scalable, fault-tolerant messaging systems. The Oracle Database Transactional Event Queues (TxEventQ) stream binder implementation allows developers to leverage Oracle’s database messaging platform within the Spring Cloud Stream ecosystem, all while keeping your data within the converged database."
+>}}
+
+{{< blog  
+    author="anders"
+    date="8/6/2024"
+    title="Connect Oracle Autonomous Database to Spring Boot"
+    link="https://medium.com/@anders.swanson.93/oracle-autonomous-database-with-spring-boot-1e71cdd8b59e"
+    abstract="It's easy to integrate Oracle Autonomous Database into your Spring Boot apps. In this article, concrete examples are provided for using Spring with Oracle Autonomous Database."
+>}}
+
+{{< blog  
+    author="anders"
+    date="7/31/2024"
+    title="Use OCI Object Storage data as Spring Boot Resources"
+    link="https://medium.com/@anders.swanson.93/use-oci-object-storage-data-as-spring-boot-resources-2f5a440f73c2"
+    abstract="Spring Resources are a great way to load data into our Spring Boot applications. In this article, Anders shows us how to use OCI Object Storage as a resource provider with Spring Cloud Oracle."
+>}}
+
+{{< blog  
+    author="mark"
+    date="7/30/2024"
+    title="Building Spring Boot apps with Spring Cloud Oracle"
+    link="https://www.linkedin.com/pulse/building-spring-boot-apps-cloud-oracle-mark-nelson-bp2be/"
+    abstract="A fully worked example of how to build microservices with Spring Cloud Oracle, including using the OCI Generative AI service to build a simple chatbot, using OCI Queue service to implement asynchronous communication between services, and using the Spring Boot Starter for UCP to access the Oracle Database."
+>}}
+
+{{< blog  
+    author="anders"
+    date="7/30/2024"
+    title="Connect Spring Mail with OCI Email Delivery Service"
+    link="https://medium.com/@anders.swanson.93/connect-spring-mail-with-oci-email-delivery-service-e24accb62ad1"
+    abstract="Anders shows us how to use Spring Cloud Oracle to use the OCI Email Delivery Service in our Spring Boot apps."
+>}}
+
+{{< blog  
+    author="anders"
+    date="7/30/2024"
+    title="Inject OCI Vault Secrets into Spring Apps"
+    link="https://medium.com/@anders.swanson.93/inject-oci-vault-secrets-into-spring-apps-ce29536d0e0d"
+    abstract="Demonstrates how to easily use OCI Vault as a Spring property source with Spring Cloud Oracle."
+>}}
+
+{{< blog  
+    author="aniket"
+    date="7/22/2024"
+    title="Blowing Up Database Monoliths"
+    link="https://www.linkedin.com/pulse/blowing-up-database-monoliths-aniket-tiwari-qsuzf/"
+    abstract="A deep dive into Data Recfactoring Advisor - an innovative method to refactor monolithic database schema for microservices."
+>}}
 
 {{< blog  
     author="mark"
